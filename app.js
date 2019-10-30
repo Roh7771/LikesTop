@@ -22,8 +22,6 @@ formEl.innerHTML = `
 
 const textEl = formEl.querySelector('[data-type=text]');
 const selectEl = formEl.querySelector('[data-type=select]');
-textEl.value = '';
-selectEl.value = 'Обычный';
 
 buttonEl = formEl.querySelector('[data-type=button]');
 buttonEl.addEventListener('click', function (e) {
@@ -35,6 +33,8 @@ buttonEl.addEventListener('click', function (e) {
         type,
         likes: 0,
     });
+    textEl.value = '';
+    selectEl.value = 'Обычный';
     rebuildPosts(postsEl, posts);
 })
 
