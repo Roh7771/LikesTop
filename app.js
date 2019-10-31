@@ -24,7 +24,7 @@ const textEl = formEl.querySelector('[data-type=text]');
 const selectEl = formEl.querySelector('[data-type=select]');
 
 buttonEl = formEl.querySelector('[data-type=button]');
-buttonEl.addEventListener('click', function (e) {
+buttonEl.addEventListener('click', (e) => {
     e.preventDefault();
     const text = textEl.value;
     const type = selectEl.value;
@@ -100,15 +100,12 @@ function rebuildPosts(containerEl, iterateItems) {
            `;
         }
 
-        const likeButtonEl = newPostEl.querySelector('[data-action=like]');
-        likeButtonEl.addEventListener('click', function () {
-            item.likes++;
-            rebuildPosts(containerEl, iterateItems);
-        })
-
-        const dislikeButtonEl = newPostEl.querySelector('[data-action=dislike]');
-        dislikeButtonEl.addEventListener('click', function () {
-            item.likes--;
+        newPostEl.addEventListener('click', (e) => {
+            if (e.target.dataset.action === 'like') {
+                item.likes++;
+            } else if (e.target.dataset.action === 'dislike') {
+                item.likes--;
+            }
             rebuildPosts(containerEl, iterateItems);
         })
 
